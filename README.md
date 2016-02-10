@@ -17,6 +17,11 @@ With a room filled to more than half its capacity an exit speed would never be l
 
 to run the simulation faster remove the sleep method on line 44 in 'EvacuationPanel.java' and set frame show to false on line 31 in 'Main.java'
 
+HEADS UP
+
+If the evacuee doesn't move for over 10 time steps its size reduces by 1 (coloured blue) if it still doesn't move on the following time step the evacuee size then reduces again by 1 (coloured black). 
+For an evacuee to become aggressive (coloured red) it most be able to both see the exit and be previously black.
+
 ##############################################################################################################################################################
 
 ##############################################################################################################################################################
