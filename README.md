@@ -9,7 +9,7 @@ TO DEMO TYPE
 Values take the following ranges
 <doorSize> in range [30 - 400] average evacuee size is 15 so door must take a larger value, average single door size is 30, average emergency door size 60 
 <noEvacuees> in range [0 - 500] room is 500 pixels and evacuee is 15 plus a personal space
-<speed> in range [1 - 5] the simulation is set to real time, a walk would be 1 , a paniced exit will takes speeds 2 - 5. 
+<speed> in range [1 - 4] the simulation is set to real time, a walk would be 1 , a paniced exit will takes speeds 2 - 4. 
 With a room filled to more than half its capacity an exit speed would never be larger than 2
 
 to run the simulation faster remove the sleep method on line 44 in 'EvacuationPanel.java' and set frame show to false on line 31 in 'Main.java'
