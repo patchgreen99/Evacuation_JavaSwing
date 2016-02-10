@@ -4,7 +4,7 @@ QUICK START
 
 
 TO DEMO TYPE
-'java main doorSize noEvacuees speed'
+'java Main    doorSize    noEvacuees    speed'
 
 Arguments can take ranges
 'doorSize' [30 - 400] average evacuee size is 15 so door must take a larger value, average single door size is 30, average emergency door size 60 
