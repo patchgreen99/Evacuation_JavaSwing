@@ -62,6 +62,7 @@ Although the graphics represents a cellular automata the essence of the program 
 
 
 POPULATING THE ROOM
+
 When the room is constructed it will produce a finite number of object Evacuee represented by an oval GUI. Each are given class variables: position and movement which are vectors and an evacuee size and speed. The position vector is initialised in the evacuee constructor and is given random components.
 
 position  = ∑ xiei 
@@ -80,9 +81,11 @@ returns true for any neighbouring evacuee
 a and b  have the positions p1 and p2 such that     
 
 RADOMISED ORDER
+
 Firstly the scrambleArray() is implemented causing even permutations to occur in the array of evacuees which in turn reorders it randomly. My methodology can be explained using an array of integers. The algorithm first selects the last component in the array (1 2 3 4 5) and then picks random element with an indices lower or equal to that of the element selected earlier (1 2 3 4 5) . Once selected it swaps the yellow element with the chosen green element and then repeats this process with the second to last element (1 2 3 4 5) (1 2 3 4 5). This keeps on repeating working towards lowering the indices of the yellow elements until the first element gets swapped with itself.
 
 MOVEMENT UPDATES
+
 The current evacuee's movement vector is then set using whereIsTheDoor()  to be in the direction of a random point in the "evacuee penetrable" section of the door way. 
 
 movement  = ∑ siei  - position
@@ -91,9 +94,11 @@ s1 = - wall thickness          s2 = (dimension 2 /2) - (door size  /2) + (evacue
 Math.random()*(door size  - evacuee size 2 )
 
 SPEED
+
 The rest of the evacuee movement method is then placed in a loop so that it is run for different speeds. Each evacuee has an unimpeded walking speed speed; the speed at which a realistic evacuee would like to escape at. In one time step if the evacuee cannot move to some chosen destination speed * time step away (yellow ring) from its starting position it will then check the availability of destinations (speed - 1)*time step away (black ring). This repeats until its speed is zero at which point it just doesn't move at all.
 
 INTERACTIONS
+
 HaveIHitEvacuee() and HitWall() use the Evacuee.lookAhead() which returns position + movement.normalise()*speed  enabling the evacuee to check to see whether another evacuee lies within its path. If HaveIHitEvacuee() returns true the current evacuee has a probability of 0.75 of turning right, if its still true there is a probability of 0.75 to turn left and if its still true there is a probability of 0.5 for the evacuee to move backwards. If its still true after this the method sets a           movement = (0,0). This decision making process is analogous to a real human in the sense that they will be quite agile 75% of the time and try an run around other evacuees and sometimes patient 50% of the time because they know if they panic to much it will lead to a blockage. 
 
 hitWall() also uses the lookAhead() method to check whether the new position lies outside the room. i.e. if position + movement.normalise()*speed    = ∑ xiei
@@ -105,6 +110,7 @@ If hitWall() returns true depending on which side of the door its on the evacuee
   
 
 IMPATIENCE
+
 Once outside the loop an impatience value is set for the evacuee. The impatience is initially zero and every time the evacuees decided movement = (0,0) impatience = impatience + 1 . If the evacuee doesn't move for over 10 time steps its size reduces by 1 (coloured blue) if it still doesn't move on the following time step the evacuee size then reduces again by 1 (coloured black). The size is then kept at this value until they escape. This is identical to a real evacuation situation because your impatience would never improve and you would continue to attempted to squeeze through the crowd with the same diminished size. For an evacuee to become aggressive (coloured red)  there first needs to be a real sense of impatience and secondly a sense of competition for the exit.  Because of this an evacuee will only become aggressive when the exit is in sight. i.e. when  position  p  = ∑ xiei
 
 x1 < 20 you can approximately see past one person
@@ -115,9 +121,11 @@ An evacuee will also only become aggressive after an impatience value reaches 30
 moveEvacuee() implements position = position + m.normalise()*speed  
 
 EXIT
+
 After the evacuee has passed halfway through the corridor that element in the array is set to null to leave a clear corridor for the exodus following it. 
 
 BLOCKAGES
+
 Since the aggressive method has been added blockages are rare since an arch of people can easily be broken by someone pushing. Because of this the only way blockages occur is if there is a fight at the door between exactly 3 evacuees. This is evident in the output because it returns an exit time of the maximum value 10000.
 
 
